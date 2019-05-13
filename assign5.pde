@@ -299,8 +299,10 @@ void draw() {
 
       // detect collision
       if(isHit(cabbageX[i],cabbageY[i],SOIL_SIZE,SOIL_SIZE,playerX,playerY,SOIL_SIZE,SOIL_SIZE)){   
+        if(playerHealth < 5){
         playerHealth +=1;
         cabbageX[i] = cabbageY[i] = -1000;
+        }
       }
     }
 
