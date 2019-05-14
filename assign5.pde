@@ -311,7 +311,7 @@ void draw() {
       image(clock, clockX[i], clockY[i]);
       // detect collision
       if(isHit(clockX[i],clockY[i],SOIL_SIZE,SOIL_SIZE,playerX,playerY,SOIL_SIZE,SOIL_SIZE)){
-        addTime(15f);
+        addTime(CLOCK_BONUS_SECONDS);
         clockX[i] = clockY[i] = -1000;
       }
     }
@@ -580,10 +580,9 @@ color getTimeTextColor(int frames){
 }
 
 int getEnemyIndexByRow(int row){       
-    int t = (row+5)*80;
     int index=-1;
     for(int i=0; i<soldierY.length; i++){
-      if(soldierY[i] == t){
+      if(soldierY[i] == (row+5)*80){
         index = i;
       }
     }
@@ -593,9 +592,8 @@ int getEnemyIndexByRow(int row){
 
 
 void drawCaution(){  
-    int count =getEnemyIndexByRow(playerRow);
-    if(count >= 0){
-      image(caution,soldierX[count],soldierY[count]-80);
+    if(getEnemyIndexByRow(playerRow) >= 0){
+      image(caution,soldierX[getEnemyIndexByRow(playerRow)],soldierY[getEnemyIndexByRow(playerRow)]-80);
     }
 }
 
